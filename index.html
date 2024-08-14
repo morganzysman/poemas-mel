@@ -124,7 +124,7 @@
 
         // Select the poem and corresponding photo based on the day of the month (1-31)
         const selectedPoem = poems[day - 1];
-        const photoPath = `./photos/${day}.jpg`; // Assuming photos are stored in a "photos" folder
+        const photoPath = `./photos/${day}.JPG`; // Assuming photos are stored in a "photos" folder
 
         // Set the greeting, date, photo, and poem in the HTML
         document.querySelector('.greeting').textContent = `${selectedHighs}, ${selectedGreeting}!`;
