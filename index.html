@@ -19,8 +19,8 @@
     <meta property="og:url" content="https://morganzysman.github.io/poemas-mel">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Daily Poems for Melanie">
-    <link rel="manifest"  href="manifest.json">
-    
+    <link rel="manifest" href="/poemas-mel/manifest.webmanifest">
+
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -90,6 +90,14 @@
         <div class="poem-container"></div>
     </div>
 
+    <script>
+          if (navigator.serviceWorker) {
+            navigator.serviceWorker.register (
+              '/poemas-mel/sw.js',
+              {scope: '/poemas-mel/'}
+            )
+          }
+      </script>
     <script>
         // Get the current day of the month
         const date = new Date();
