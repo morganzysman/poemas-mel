@@ -202,7 +202,7 @@
         <div id="app-content" class="app-container">
             <div class="container">
                 <div class="title">Daily Poems for Melanie</div>
-                <div class="description">Discover a new, heartfelt poem every day, accompanied by a beautiful image.</div>
+                <div class="description">Descubre cada día un nuevo poema conmovedor, acompañado de su memoria en imagen</div>
             </div>
             <div id="mosaic-container" class="mosaic"></div>
             <div id="modal" class="modal">
@@ -223,6 +223,40 @@
             <button id="install-prompt">Instalar App</button>
         </div>
         <script>
+            // PWA Install Prompt Handling
+            let deferredPrompt;
+            const installButton = document.getElementById('install-prompt');
+            const appContent = document.getElementById('app-content');
+            const promptContent = document.getElementById('prompt-content');
+            
+            window.addEventListener('beforeinstallprompt', (e) => {
+                console.log('PWA can be installed')
+                e.preventDefault();
+                deferredPrompt = e;
+            
+                promptContent.style.display = 'block';
+                appContent.style.display = 'none';
+            
+                installButton.addEventListener('click', () => {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            promptContent.style.display = 'none';
+                            appContent.style.display = 'block';
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+            });
+            
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/poemas-mel/sw.js', {scope: '/poemas-mel/'})
+                .then(function(registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }, function(err) {
+                    console.log('Service Worker registration failed:', err);
+                });
+            }
             // Get the current day of the month
             const date = new Date();
             const day = date.getDate();
@@ -328,39 +362,6 @@
                 }
             };
             
-            // PWA Install Prompt Handling
-            let deferredPrompt;
-            const installButton = document.getElementById('install-prompt');
-            const appContent = document.getElementById('app-content');
-            const promptContent = document.getElementById('prompt-content');
             
-            window.addEventListener('beforeinstallprompt', (e) => {
-                console.log('PWA can be installed')
-                e.preventDefault();
-                deferredPrompt = e;
-            
-                promptContent.style.display = 'block';
-                appContent.style.display = 'none';
-            
-                installButton.addEventListener('click', () => {
-                    deferredPrompt.prompt();
-                    deferredPrompt.userChoice.then((choiceResult) => {
-                        if (choiceResult.outcome === 'accepted') {
-                            promptContent.style.display = 'none';
-                            appContent.style.display = 'block';
-                        }
-                        deferredPrompt = null;
-                    });
-                });
-            });
-            
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/poemas-mel/sw.js', {scope: '/poemas-mel/'})
-                .then(function(registration) {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                }, function(err) {
-                    console.log('Service Worker registration failed:', err);
-                });
-            }
         </script>
 </html>
