@@ -149,6 +149,12 @@
             });
         });
 
+        window.addEventListener('appinstalled', (event) => {
+            console.log('PWA was installed');
+            promptContent.style.display = 'none';
+            appContent.style.display = 'block';
+        });
+
       if (navigator.serviceWorker) {
         navigator.serviceWorker.register (
           '/poemas-mel/sw.js',
