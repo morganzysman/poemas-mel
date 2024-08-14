@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Poems for Melanie</title>
-    <link rel="icon" href="https://morganzysman.github.io/poemas-mel/favicon.ico">
-
-    <!-- Apple Touch Icon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="https://morganzysman.github.io/poemas-mel/apple-touch-icon.png">
-    <!-- Android Icons -->
-    <link rel="icon" type="image/png" sizes="192x192" href="https://morganzysman.github.io/poemas-mel/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="https://morganzysman.github.io/poemas-mel/android-chrome-512x512.png">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Daily Poems for Melanie">
-    <meta property="og:description" content="Descubre cada día un poema escrito con amor">
-    <meta property="og:image" content="https://morganzysman.github.io/poemas-mel/favicon.ico">
-    <meta property="og:url" content="https://morganzysman.github.io/poemas-mel">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Daily Poems for Melanie">
-    
-    <link rel="manifest" href="/poemas-mel/manifest.webmanifest">
-
-    <style>
-        body {
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Daily Poems for Melanie</title>
+        <link rel="icon" href="https://morganzysman.github.io/poemas-mel/favicon.ico">
+        <!-- Apple Touch Icon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="https://morganzysman.github.io/poemas-mel/apple-touch-icon.png">
+        <!-- Android Icons -->
+        <link rel="icon" type="image/png" sizes="192x192" href="https://morganzysman.github.io/poemas-mel/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="https://morganzysman.github.io/poemas-mel/android-chrome-512x512.png">
+        <!-- Open Graph Meta Tags -->
+        <meta property="og:title" content="Daily Poems for Melanie">
+        <meta property="og:description" content="Descubre cada día un poema escrito con amor">
+        <meta property="og:image" content="https://morganzysman.github.io/poemas-mel/favicon.ico">
+        <meta property="og:url" content="https://morganzysman.github.io/poemas-mel">
+        <meta property="og:type" content="website">
+        <meta property="og:site_name" content="Daily Poems for Melanie">
+        <link rel="manifest" href="/poemas-mel/manifest.webmanifest">
+        <style>
+            body {
             font-family: "Helvetica Neue", Arial, sans-serif;
             background-color: #f3e5f5;
             color: #333;
@@ -35,88 +31,77 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-
-        .container {
+            }
+            .container {
             max-width: 1000px;
             width: 100%;
             margin: 20px auto;
             text-align: center;
-        }
-
-        .title {
+            }
+            .title {
             font-size: 2.5em;
             color: #8e24aa;
             margin-bottom: 10px;
-        }
-
-        .description {
+            }
+            .description {
             font-size: 1em;
             color: #555;
             margin-bottom: 30px;
-        }
-
-        .mosaic {
+            }
+            .mosaic {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 10px;
             max-width: 1000px;
             margin: 20px auto;
-        }
-
-
-        .mosaic-item {
-    position: relative;
-    width: 100%;
-    padding-bottom: 100%; /* This maintains a square aspect ratio */
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-
-        .mosaic-item img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* This ensures the image covers the square area */
-    border-radius: 10px;
-    border: 4px solid white;
-}
-
-.mosaic-item img.previous-day {
-    opacity: 0.5; /* Slightly darker image for past days */
-}
-
-.mosaic-item img.current-day {
-    opacity: 1; /* Clear image for the current day */
-    border: 4px solid #8e24aa; /* Highlight the current day */
-}
-
-.mosaic-item img.upcoming-day {
-    filter: blur(10px); /* Blurred image for upcoming days */
-    opacity: 0.5; /* Slightly faded to indicate it's in the future */
-    cursor: not-allowed;
-}
-        
-        .mosaic-item span {
+            }
+            .mosaic-item {
+            position: relative;
+            width: 100%;
+            padding-bottom: 100%; /* This maintains a square aspect ratio */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            }
+            .mosaic-item img {
             position: absolute;
-            top: 10px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* This ensures the image covers the square area */
+            border-radius: 10px;
+            border: 4px solid white;
+            }
+            .mosaic-item img.previous-day {
+            opacity: 0.5; /* Slightly darker image for past days */
+            }
+            .mosaic-item img.current-day {
+            opacity: 1; /* Clear image for the current day */
+            border: 4px solid #8e24aa; /* Highlight the current day */
+            }
+            .mosaic-item img.upcoming-day {
+            filter: blur(5px); /* Blurred image for upcoming days */
+            opacity: 0.5; /* Slightly faded to indicate it's in the future */
+            cursor: not-allowed;
+            }
+            .mosaic-item span {
+            position: absolute;
+            bottom: 10px;
             left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
+            transform: translate(-40%, 0); /* Centers the number horizontally */
+            background-color: rgba(255, 255, 255, 0.8); /* Lighter background color */
+            color: #333; /* Darker text color for contrast */
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 1.2em;
             font-weight: bold;
             z-index: 1;
             pointer-events: none;
-        }
-
-        /* Modal Styles */
-        .modal {
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+            white-space: nowrap; /* Prevents the number from breaking onto a new line */
+            }
+            /* Modal Styles */
+            .modal {
             display: none;
             position: fixed;
             z-index: 1;
@@ -126,9 +111,8 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        .modal-content {
+            }
+            .modal-content {
             background-color: #fefefe;
             margin: 15% auto;
             padding: 20px;
@@ -136,35 +120,30 @@
             width: 80%;
             max-width: 600px;
             border-radius: 10px;
-        }
-
-        .close {
+            }
+            .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
+            }
+            .close:hover,
+            .close:focus {
             color: black;
             text-decoration: none;
             cursor: pointer;
-        }
-
-        .poem-container-modal {
+            }
+            .poem-container-modal {
             font-size: 1.2em;
             line-height: 1.6em;
             color: #555;
             margin-top: 10px;
-        }
-
-        .photo-container-modal img {
+            }
+            .photo-container-modal img {
             max-width: 100%;
             border-radius: 10px;
-        }
-
-        .app-container {
+            }
+            .app-container {
             display: block;
             background-color: #ffffff;
             border-radius: 15px;
@@ -172,9 +151,8 @@
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 100%;
-        }
-
-        .prompt-container {
+            }
+            .prompt-container {
             display: none;
             background-color: #ffffff;
             border-radius: 15px;
@@ -182,17 +160,15 @@
             box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
             max-width: 600px;
             width: 100%;
-        }
-
-        .photo-container img {
+            }
+            .photo-container img {
             max-width: 100%;
             max-height: 300px;
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .poem-container {
+            }
+            .poem-container {
             margin-top: 20px;
             font-size: 1.2em;
             line-height: 1.6em;
@@ -201,21 +177,18 @@
             background-color: #f8bbd094;
             border-radius: 10px;
             box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .greeting {
+            }
+            .greeting {
             font-size: 2em;
             color: #8e24aa;
             margin-bottom: 10px;
-        }
-
-        .date {
+            }
+            .date {
             font-size: 1.2em;
             color: #7b1fa280;
             margin-bottom: 20px;
-        }
-
-        #install-prompt {
+            }
+            #install-prompt {
             display: none;
             padding: 10px 20px;
             background-color: #8e24aa;
@@ -224,176 +197,175 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 20px;
-        }
-
-        #install-prompt:active {
+            }
+            #install-prompt:active {
             background-color: #6a1b9a;
-        }
-    </style>
-</head>
-<body>
-    <div id="app-content" class="container">
-        <div class="container">
-            <div class="title">Daily Poems for Melanie</div>
-            <div class="description">Discover a new, heartfelt poem every day, accompanied by a beautiful image.</div>
-        </div>
-        <div id="mosaic-container" class="mosaic"></div>
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <div class="greeting"></div>
-                <div class="date"></div>
-                <div class="photo-container-modal">
-                    <img src="" id="modal-photo" alt="Modal Photo">
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app-content" class="container">
+            <div class="container">
+                <div class="title">Daily Poems for Melanie</div>
+                <div class="description">Discover a new, heartfelt poem every day, accompanied by a beautiful image.</div>
+            </div>
+            <div id="mosaic-container" class="mosaic"></div>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <div class="greeting"></div>
+                    <div class="date"></div>
+                    <div class="photo-container-modal">
+                        <img src="" id="modal-photo" alt="Modal Photo">
+                    </div>
+                    <div class="poem-container-modal" id="modal-poem"></div>
                 </div>
-                <div class="poem-container-modal" id="modal-poem"></div>
             </div>
         </div>
-    </div>
-    <div id="prompt-content" class="prompt-container">
-        <h1>Install Prompt</h1>
-        <p class="date">Tienes que darle al botón instalar para poder disfrutar del aplicativo</p>
-        <button id="install-prompt">Install App</button>
-    </div>
-
-    <script>
-        // Get the current day of the month
-        const date = new Date();
-        const day = date.getDate();
-
-        const mosaicContainer = document.getElementById("mosaic-container");
-        const modal = document.getElementById("modal");
-        const modalClose = document.querySelector(".close");
-        const modalPhoto = document.getElementById("modal-photo");
-        const modalPoem = document.getElementById("modal-poem");
-        const modalGreeting = document.querySelector(".greeting");
-        const modalDate = document.querySelector(".date");
-
-        // Array of greetings
-        const highs = ["Hola", "Buenos días", "Opaa", "Hello"];
-        const greetings = ["mi Reina", "mi Corazón", "mi Conrazón", "mi vida"];
-
-        // Randomly select a greeting
-        const selectedHighs = highs[Math.floor(Math.random() * highs.length)];
-        const selectedGreeting = greetings[Math.floor(Math.random() * greetings.length)];
-
-        // Array of 31 poems (one for each day of the month)
-        const poems = [
-            "In your eyes, I see the stars,\nA love so pure, no scars,\nEvery heartbeat calls your name,\nIn this life, it's not a game.",
-            "Love is a silent song,\nThat echoes all night long,\nIn your heart, it finds a place,\nIn your soul, a warm embrace.",
-            "Power lies in gentle hands,\nLove in whispers, not demands,\nWith each breath, a story told,\nIn your heart, a truth unfolds.",
-            "The moonlight dances in your hair,\nA love so deep, beyond compare,\nIn your arms, the world is still,\nIn your heart, I've found my will.",
-            "Life is short, love is long,\nIn your arms, I belong,\nEvery tear, every smile,\nMakes this journey worth the while.",
-            "In the silence of the night,\nLove's whispers feel so right,\nHold my hand, don’t let go,\nIn your heart, my love will grow.",
-            "A single glance, a silent touch,\nSpeaks of love, so pure, so much,\nIn your eyes, I see my fate,\nIn your heart, I find my mate.",
-            "Stars align in endless skies,\nWhispering love that never dies,\nIn your arms, my soul finds peace,\nIn your love, all fears release.",
-            "The world may change, love remains,\nIn your heart, no one else reigns,\nThrough the storms and sunny days,\nIn your love, I find my ways.",
-            "Love is more than words can say,\nIn your heart, I find my way,\nEvery day a new surprise,\nIn your love, a sweet sunrise.",
-            "Through the dark, you are the light,\nIn your heart, love's pure delight,\nEvery beat of love's refrain,\nIn your arms, I lose all pain.",
-            "When the world feels cold and grey,\nIn your arms, I find my way,\nEvery smile, a gentle breeze,\nIn your love, my heart finds ease.",
-            "Whispers of love, soft and kind,\nIn your heart, my peace I find,\nEvery day, a new embrace,\nIn your love, a warm place.",
-            "With each dawn, love's light shines bright,\nIn your heart, everything feels right,\nThrough the night and into day,\nIn your love, I'll always stay.",
-            "Gentle winds and whispered dreams,\nIn your heart, love's quiet streams,\nEvery moment, a soft refrain,\nIn your love, there's no more pain.",
-            "Love’s a journey, long and wide,\nIn your heart, I will reside,\nThrough the valleys, up the hills,\nIn your love, I lose all chills.",
-            "Every star tells a story,\nIn your love, there is glory,\nThrough the ages, love remains,\nIn your heart, no chains.",
-            "The sun may set, the moon may rise,\nIn your heart, no disguise,\nLove's a gift, pure and true,\nIn your love, I start anew.",
-            "Every day, a love anew,\nIn your heart, my dreams come true,\nThrough the night, love's sweet song,\nIn your arms, where I belong.",
-            "When the winds of change do blow,\nIn your heart, love will grow,\nEvery whisper, every sigh,\nIn your love, I learn to fly.",
-            "Love is like a summer breeze,\nIn your heart, I find my peace,\nEvery moment, every glance,\nIn your love, a sweet romance.",
-            "Through the storm, through the rain,\nIn your heart, I find no pain,\nEvery touch, a gentle plea,\nIn your love, I am free.",
-            "With each step, love does grow,\nIn your heart, a warm glow,\nEvery day, a new delight,\nIn your love, all is right.",
-            "The ocean's waves, the starry skies,\nIn your heart, no goodbyes,\nLove's a journey, love's a tale,\nIn your love, I set sail.",
-            "Whispers soft as morning dew,\nIn your heart, love so true,\nEvery breath, a gentle kiss,\nIn your love, eternal bliss.",
-            "With every dawn, love’s light anew,\nIn your heart, skies so blue,\nThrough the day and into night,\nIn your love, I find my light.",
-            "In your eyes, I find my way,\nIn your heart, I wish to stay,\nEvery moment, every hour,\nIn your love, I find my power.",
-            "The stars may fade, the night may fall,\nIn your heart, I've found it all,\nEvery touch, every care,\nIn your love, no despair.",
-            "Through the seasons, love remains,\nIn your heart, no chains,\nEvery day, a love divine,\nIn your love, all is fine.",
-            "Love is patient, love is kind,\nIn your heart, peace I find,\nThrough the highs and through the lows,\nIn your love, my heart glows.",
-            "Every journey starts with love,\nIn your heart, peace above,\nThrough the paths, wild and free,\nIn your love, I’m meant to be.",
-        ];
-
-        // Generate the mosaic
-        for (let i = 1; i <= 31; i++) {
-    const item = document.createElement("div");
-    item.className = "mosaic-item";
-
-    const img = document.createElement("img");
-    img.src = `https://morganzysman.github.io/poemas-mel/photos/${i}.JPG`;
-    img.alt = `Day ${i}`;
-    img.dataset.day = i;
-
-    if (i < day) {
-        img.classList.add("previous-day"); // Slightly darkened image for past days
-    } else if (i === day) {
-        img.classList.add("current-day"); // Clear image for the current day
-        // Automatically open the modal for the current day
-        modal.style.display = "block";
-        modalPhoto.src = img.src;
-        modalPoem.textContent = poems[i - 1];
-        modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
-        modalDate.textContent = `Poema del día - ${date.toLocaleDateString()}`;
-    } else {
-        img.classList.add("upcoming-day"); // Blurred image for future days
-    }
-
-    if (i <= day) {
-        img.addEventListener("click", function () {
+        <div id="prompt-content" class="prompt-container">
+            <h1>Install Prompt</h1>
+            <p class="date">Tienes que darle al botón instalar para poder disfrutar del aplicativo</p>
+            <button id="install-prompt">Install App</button>
+        </div>
+        <script>
+            // Get the current day of the month
+            const date = new Date();
+            const day = date.getDate();
+            
+            const mosaicContainer = document.getElementById("mosaic-container");
+            const modal = document.getElementById("modal");
+            const modalClose = document.querySelector(".close");
+            const modalPhoto = document.getElementById("modal-photo");
+            const modalPoem = document.getElementById("modal-poem");
+            const modalGreeting = document.querySelector(".greeting");
+            const modalDate = document.querySelector(".date");
+            
+            // Array of greetings
+            const highs = ["Hola", "Buenos días", "Opaa", "Hello"];
+            const greetings = ["mi Reina", "mi Corazón", "mi Conrazón", "mi vida"];
+            
+            // Randomly select a greeting
+            const selectedHighs = highs[Math.floor(Math.random() * highs.length)];
+            const selectedGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            
+            // Array of 31 poems (one for each day of the month)
+            const poems = [
+                "In your eyes, I see the stars,\nA love so pure, no scars,\nEvery heartbeat calls your name,\nIn this life, it's not a game.",
+                "Love is a silent song,\nThat echoes all night long,\nIn your heart, it finds a place,\nIn your soul, a warm embrace.",
+                "Power lies in gentle hands,\nLove in whispers, not demands,\nWith each breath, a story told,\nIn your heart, a truth unfolds.",
+                "The moonlight dances in your hair,\nA love so deep, beyond compare,\nIn your arms, the world is still,\nIn your heart, I've found my will.",
+                "Life is short, love is long,\nIn your arms, I belong,\nEvery tear, every smile,\nMakes this journey worth the while.",
+                "In the silence of the night,\nLove's whispers feel so right,\nHold my hand, don’t let go,\nIn your heart, my love will grow.",
+                "A single glance, a silent touch,\nSpeaks of love, so pure, so much,\nIn your eyes, I see my fate,\nIn your heart, I find my mate.",
+                "Stars align in endless skies,\nWhispering love that never dies,\nIn your arms, my soul finds peace,\nIn your love, all fears release.",
+                "The world may change, love remains,\nIn your heart, no one else reigns,\nThrough the storms and sunny days,\nIn your love, I find my ways.",
+                "Love is more than words can say,\nIn your heart, I find my way,\nEvery day a new surprise,\nIn your love, a sweet sunrise.",
+                "Through the dark, you are the light,\nIn your heart, love's pure delight,\nEvery beat of love's refrain,\nIn your arms, I lose all pain.",
+                "When the world feels cold and grey,\nIn your arms, I find my way,\nEvery smile, a gentle breeze,\nIn your love, my heart finds ease.",
+                "Whispers of love, soft and kind,\nIn your heart, my peace I find,\nEvery day, a new embrace,\nIn your love, a warm place.",
+                "With each dawn, love's light shines bright,\nIn your heart, everything feels right,\nThrough the night and into day,\nIn your love, I'll always stay.",
+                "Gentle winds and whispered dreams,\nIn your heart, love's quiet streams,\nEvery moment, a soft refrain,\nIn your love, there's no more pain.",
+                "Love’s a journey, long and wide,\nIn your heart, I will reside,\nThrough the valleys, up the hills,\nIn your love, I lose all chills.",
+                "Every star tells a story,\nIn your love, there is glory,\nThrough the ages, love remains,\nIn your heart, no chains.",
+                "The sun may set, the moon may rise,\nIn your heart, no disguise,\nLove's a gift, pure and true,\nIn your love, I start anew.",
+                "Every day, a love anew,\nIn your heart, my dreams come true,\nThrough the night, love's sweet song,\nIn your arms, where I belong.",
+                "When the winds of change do blow,\nIn your heart, love will grow,\nEvery whisper, every sigh,\nIn your love, I learn to fly.",
+                "Love is like a summer breeze,\nIn your heart, I find my peace,\nEvery moment, every glance,\nIn your love, a sweet romance.",
+                "Through the storm, through the rain,\nIn your heart, I find no pain,\nEvery touch, a gentle plea,\nIn your love, I am free.",
+                "With each step, love does grow,\nIn your heart, a warm glow,\nEvery day, a new delight,\nIn your love, all is right.",
+                "The ocean's waves, the starry skies,\nIn your heart, no goodbyes,\nLove's a journey, love's a tale,\nIn your love, I set sail.",
+                "Whispers soft as morning dew,\nIn your heart, love so true,\nEvery breath, a gentle kiss,\nIn your love, eternal bliss.",
+                "With every dawn, love’s light anew,\nIn your heart, skies so blue,\nThrough the day and into night,\nIn your love, I find my light.",
+                "In your eyes, I find my way,\nIn your heart, I wish to stay,\nEvery moment, every hour,\nIn your love, I find my power.",
+                "The stars may fade, the night may fall,\nIn your heart, I've found it all,\nEvery touch, every care,\nIn your love, no despair.",
+                "Through the seasons, love remains,\nIn your heart, no chains,\nEvery day, a love divine,\nIn your love, all is fine.",
+                "Love is patient, love is kind,\nIn your heart, peace I find,\nThrough the highs and through the lows,\nIn your love, my heart glows.",
+                "Every journey starts with love,\nIn your heart, peace above,\nThrough the paths, wild and free,\nIn your love, I’m meant to be.",
+            ];
+            
+            // Generate the mosaic
+            for (let i = 1; i <= 31; i++) {
+            const item = document.createElement("div");
+            item.className = "mosaic-item";
+            
+            const img = document.createElement("img");
+            img.src = `https://morganzysman.github.io/poemas-mel/photos/${i}.JPG`;
+            img.alt = `Day ${i}`;
+            img.dataset.day = i;
+            
+            if (i < day) {
+            img.classList.add("previous-day"); // Slightly darkened image for past days
+            } else if (i === day) {
+            img.classList.add("current-day"); // Clear image for the current day
+            // Automatically open the modal for the current day
             modal.style.display = "block";
-            modalPhoto.src = this.src;
+            modalPhoto.src = img.src;
             modalPoem.textContent = poems[i - 1];
-        });
-    }
-
-    item.appendChild(img);
-    const span = document.createElement("span");
-    span.textContent = i;
-    item.appendChild(span);
-    mosaicContainer.appendChild(item);
-}
-
-        // Handle modal close
-        modalClose.onclick = function () {
-            modal.style.display = "none";
-        };
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+            modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
+            modalDate.textContent = `Poema del día - ${date.toLocaleDateString()}`;
+            } else {
+            img.classList.add("upcoming-day"); // Blurred image for future days
             }
-        };
-
-        // PWA Install Prompt Handling
-        let deferredPrompt;
-        const installButton = document.getElementById('install-prompt');
-        const appContent = document.getElementById('app-content');
-        const promptContent = document.getElementById('prompt-content');
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-
-            promptContent.style.display = 'block';
-            appContent.style.display = 'none';
-
-            installButton.addEventListener('click', () => {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        promptContent.style.display = 'none';
-                        appContent.style.display = 'block';
-                    }
-                    deferredPrompt = null;
+            
+            if (i <= day) {
+            img.addEventListener("click", function () {
+                modal.style.display = "block";
+                modalPhoto.src = this.src;
+                modalPoem.textContent = poems[i - 1];
+            });
+            }
+            
+            item.appendChild(img);
+            const span = document.createElement("span");
+            span.textContent = i;
+            item.appendChild(span);
+            mosaicContainer.appendChild(item);
+            }
+            
+            // Handle modal close
+            modalClose.onclick = function () {
+                modal.style.display = "none";
+            };
+            
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+            
+            // PWA Install Prompt Handling
+            let deferredPrompt;
+            const installButton = document.getElementById('install-prompt');
+            const appContent = document.getElementById('app-content');
+            const promptContent = document.getElementById('prompt-content');
+            
+            window.addEventListener('beforeinstallprompt', (e) => {
+                console.log('PWA can be installed')
+                e.preventDefault();
+                deferredPrompt = e;
+            
+                promptContent.style.display = 'block';
+                appContent.style.display = 'none';
+            
+                installButton.addEventListener('click', () => {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            promptContent.style.display = 'none';
+                            appContent.style.display = 'block';
+                        }
+                        deferredPrompt = null;
+                    });
                 });
             });
-        });
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/poemas-mel/sw.js', {scope: '/poemas-mel/'})
-            .then(function(registration) {
-                console.log('Service Worker registered with scope:', registration.scope);
-            }, function(err) {
-                console.log('Service Worker registration failed:', err);
-            });
-        }
-    </script>
+            
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/poemas-mel/sw.js', {scope: '/poemas-mel/'})
+                .then(function(registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }, function(err) {
+                    console.log('Service Worker registration failed:', err);
+                });
+            }
+        </script>
 </html>
