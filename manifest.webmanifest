@@ -1,9 +1,9 @@
 {
   // Name of the app and short name in case there isn't enough space
-  "name": "Github Page PWA",
+  "name": "Poesia-Melanie",
   "short_name": "GPPWA",
   // Description what your app is
-  "description": "Github Page as a Progressive Web App",
+  "description": "Descubre cada día un nuevo poema conmovedor, acompañado de su memoria en imagen",
  
   // Scope and start URL - these need to change to yours
   "scope": "/poemas-mel/",
