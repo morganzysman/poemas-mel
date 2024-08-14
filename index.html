@@ -139,6 +139,7 @@
             border-radius: 10px;
             }
             .app-container {
+                margin: 20px;
             display: block;
             background-color: #ffffff;
             border-radius: 15px;
@@ -201,8 +202,8 @@
     <body>
         <div id="app-content" class="app-container">
             <div class="container">
-                <div class="title">Daily Poems for Melanie</div>
-                <div class="description">Descubre cada día un nuevo poema conmovedor, acompañado de su memoria en imagen</div>
+                <div class="title">¡A su día, su poema!</div>
+                <div class="description">Cada día un nuevo poema, acompañado de su memoria en imagen</div>
             </div>
             <div id="mosaic-container" class="mosaic"></div>
             <div id="modal" class="modal">
@@ -248,7 +249,7 @@
                     });
                 });
             });
-            
+
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/poemas-mel/sw.js', {scope: '/poemas-mel/'})
                 .then(function(registration) {
@@ -292,7 +293,7 @@
                 "Through the dark, you are the light,\nIn your heart, love's pure delight,\nEvery beat of love's refrain,\nIn your arms, I lose all pain.",
                 "When the world feels cold and grey,\nIn your arms, I find my way,\nEvery smile, a gentle breeze,\nIn your love, my heart finds ease.",
                 "Whispers of love, soft and kind,\nIn your heart, my peace I find,\nEvery day, a new embrace,\nIn your love, a warm place.",
-                "With each dawn, love's light shines bright,\nIn your heart, everything feels right,\nThrough the night and into day,\nIn your love, I'll always stay.",
+                "Besos y amor,\nDulce en boca,\nBarriga llena, corazón contento",
                 "Gentle winds and whispered dreams,\nIn your heart, love's quiet streams,\nEvery moment, a soft refrain,\nIn your love, there's no more pain.",
                 "Love’s a journey, long and wide,\nIn your heart, I will reside,\nThrough the valleys, up the hills,\nIn your love, I lose all chills.",
                 "Every star tells a story,\nIn your love, there is glory,\nThrough the ages, love remains,\nIn your heart, no chains.",
@@ -329,9 +330,12 @@
             // Automatically open the modal for the current day
             modal.style.display = "block";
             modalPhoto.src = img.src;
-            modalPoem.textContent = poems[i - 1];
+            modalPoem.innerHTML = formatPoem(poems[i - 1]);
             modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
-            modalDate.textContent = `Poema del día - ${date.toLocaleDateString()}`;
+
+            const poemDate = new Date();
+            poemDate.setDate(i); // Set the correct date based on the day number
+            modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
             } else {
             img.classList.add("upcoming-day"); // Blurred image for future days
             }
@@ -340,7 +344,10 @@
             img.addEventListener("click", function () {
                 modal.style.display = "block";
                 modalPhoto.src = this.src;
-                modalPoem.textContent = poems[i - 1];
+                modalPoem.innerHTML = formatPoem(poems[i - 1]);
+                const poemDate = new Date();
+                poemDate.setDate(i); // Set the correct date based on the day number
+                modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
             });
             }
             
@@ -362,6 +369,9 @@
                 }
             };
             
+            function formatPoem(poem) {
+    return poem.replace(/\n/g, '<br>');
+}
             
         </script>
 </html>
