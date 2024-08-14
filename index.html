@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poem of the Day for Melanie</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f3e5f5;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .photo-container img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .poem-container {
+            margin-top: 20px;
+            font-size: 1.2em;
+            line-height: 1.6em;
+            color: #555;
+            padding: 15px;
+            background-color: #f8bbd0;
+            border-radius: 10px;
+            box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .greeting {
+            font-size: 2em;
+            color: #8e24aa;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 1.2em;
+            color: #7b1fa2;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="greeting"></h1>
+        <p class="date"></p>
+        
+        <div class="photo-container">
+            <img src="" alt="Photo of the Day" id="photo-of-the-day">
+        </div>
+        
+        <div class="poem-container"></div>
+    </div>
+
+    <script>
+        // Array of greetings
+        const highs = ["Hola", "Buenos diás", "Opaa", "Hello"];
+
+        const greetings = ["mi Reina", "mi Corazon", "mi Conrazon", "mi vida"];
+        
+        // Randomly select a greeting
+        const selectedHighs = highs[Math.floor(Math.random() * highs.length)];
+        
+        const selectedGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+        // Array of 31 poems (one for each day of the month)
+        const poems = [
+            "In your eyes, I see the stars,\nA love so pure, no scars,\nEvery heartbeat calls your name,\nIn this life, it's not a game.",
+            "Love is a silent song,\nThat echoes all night long,\nIn your heart, it finds a place,\nIn your soul, a warm embrace.",
+            "Power lies in gentle hands,\nLove in whispers, not demands,\nWith each breath, a story told,\nIn your heart, a truth unfolds.",
+            "The moonlight dances in your hair,\nA love so deep, beyond compare,\nIn your arms, the world is still,\nIn your heart, I've found my will.",
+            "Life is short, love is long,\nIn your arms, I belong,\nEvery tear, every smile,\nMakes this journey worth the while.",
+            "In the silence of the night,\nLove's whispers feel so right,\nHold my hand, don’t let go,\nIn your heart, my love will grow.",
+            "A single glance, a silent touch,\nSpeaks of love, so pure, so much,\nIn your eyes, I see my fate,\nIn your heart, I find my mate.",
+            "Stars align in endless skies,\nWhispering love that never dies,\nIn your arms, my soul finds peace,\nIn your love, all fears release.",
+            "The world may change, love remains,\nIn your heart, no one else reigns,\nThrough the storms and sunny days,\nIn your love, I find my ways.",
+            "Love is more than words can say,\nIn your heart, I find my way,\nEvery day a new surprise,\nIn your love, a sweet sunrise.",
+            "Through the dark, you are the light,\nIn your heart, love's pure delight,\nEvery beat of love's refrain,\nIn your arms, I lose all pain.",
+            "When the world feels cold and grey,\nIn your arms, I find my way,\nEvery smile, a gentle breeze,\nIn your love, my heart finds ease.",
+            "Whispers of love, soft and kind,\nIn your heart, my peace I find,\nEvery day, a new embrace,\nIn your love, a warm place.",
+            "With each dawn, love's light shines bright,\nIn your heart, everything feels right,\nThrough the night and into day,\nIn your love, I'll always stay.",
+            "Gentle winds and whispered dreams,\nIn your heart, love's quiet streams,\nEvery moment, a soft refrain,\nIn your love, there's no more pain.",
+            "Love’s a journey, long and wide,\nIn your heart, I will reside,\nThrough the valleys, up the hills,\nIn your love, I lose all chills.",
+            "Every star tells a story,\nIn your love, there is glory,\nThrough the ages, love remains,\nIn your heart, no chains.",
+            "The sun may set, the moon may rise,\nIn your heart, no disguise,\nLove's a gift, pure and true,\nIn your love, I start anew.",
+            "Every day, a love anew,\nIn your heart, my dreams come true,\nThrough the night, love's sweet song,\nIn your arms, where I belong.",
+            "When the winds of change do blow,\nIn your heart, love will grow,\nEvery whisper, every sigh,\nIn your love, I learn to fly.",
+            "Love is like a summer breeze,\nIn your heart, I find my peace,\nEvery moment, every glance,\nIn your love, a sweet romance.",
+            "Through the storm, through the rain,\nIn your heart, I find no pain,\nEvery touch, a gentle plea,\nIn your love, I am free.",
+            "With each step, love does grow,\nIn your heart, a warm glow,\nEvery day, a new delight,\nIn your love, all is right.",
+            "The ocean's waves, the starry skies,\nIn your heart, no goodbyes,\nLove's a journey, love's a tale,\nIn your love, I set sail.",
+            "Whispers soft as morning dew,\nIn your heart, love so true,\nEvery breath, a gentle kiss,\nIn your love, eternal bliss.",
+            "With every dawn, love’s light anew,\nIn your heart, skies so blue,\nThrough the day and into night,\nIn your love, I find my light.",
+            "In your eyes, I find my way,\nIn your heart, I wish to stay,\nEvery moment, every hour,\nIn your love, I find my power.",
+            "The stars may fade, the night may fall,\nIn your heart, I've found it all,\nEvery touch, every care,\nIn your love, no despair.",
+            "Through the seasons, love remains,\nIn your heart, no chains,\nEvery day, a love divine,\nIn your love, all is fine.",
+            "Love is patient, love is kind,\nIn your heart, peace I find,\nThrough the highs and through the lows,\nIn your love, my heart glows.",
+            "Every journey starts with love,\nIn your heart, peace above,\nThrough the paths, wild and free,\nIn your love, I’m meant to be."
+        ];
+
+        // Get the current day of the month
+        const date = new Date();
+        const day = date.getDate();
+
+        // Select the poem and corresponding photo based on the day of the month (1-31)
+        const selectedPoem = poems[day - 1];
+        const photoPath = `./photos/${day}.jpg`; // Assuming photos are stored in a "photos" folder
+
+        // Set the greeting, date, photo, and poem in the HTML
+        document.querySelector('.greeting').textContent = `${selectedHighs}, ${selectedGreeting}!`;
+        document.querySelector('.date').textContent = `Poem of the Day - ${date.toLocaleDateString()}`;
+        document.querySelector('#photo-of-the-day').src = photoPath;
+        document.querySelector('.poem-container').textContent = selectedPoem;
+    </script>
+</body>
+</html>
