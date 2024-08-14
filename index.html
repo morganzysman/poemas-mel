@@ -37,7 +37,18 @@
             height: 100vh;
         }
 
-        .container {
+        .app-container {
+            display: none; /* Hide content by default */
+            background-color: #ffffff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .prompt-container {
+            display: block;
             background-color: #ffffff;
             border-radius: 15px;
             padding: 30px;
@@ -94,10 +105,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
-
-        <button id="install-prompt">Install App</button>
-
+    <div id="app-content" class="app-container">
         <h1 class="greeting"></h1>
         <p class="date"></p>
         
@@ -108,22 +116,31 @@
         <div class="poem-container"></div>
     </div>
 
+    <div id="prompt-content" class="prompt-container">
+        <h1 class="greeting">Hola Mi Vida</h1>
+        <p class="date">Tienes que darle al button installar para poder disfrutar del applicativo</p>
+        <button id="install-prompt">Install App</button>
+    </div>
+
+
     <script>
         // PWA Install Prompt Handling
         let deferredPrompt;
         const installButton = document.getElementById('install-prompt');
+        const appContent = document.getElementById('app-content');
+        const promptContent = document.getElementById('prompt-content');
 
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            installButton.style.display = 'block';
 
             installButton.addEventListener('click', () => {
-                installButton.style.display = 'none';
+                promptContent.style.display = 'none';
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
                         console.log('User accepted the install prompt');
+                        appContent.style.display = 'block';  // Show content after install
                     } else {
                         console.log('User dismissed the install prompt');
                     }
@@ -131,7 +148,7 @@
                 });
             });
         });
-        
+
       if (navigator.serviceWorker) {
         navigator.serviceWorker.register (
           '/poemas-mel/sw.js',
