@@ -76,10 +76,28 @@
             color: #7b1fa280;
             margin-bottom: 20px;
         }
+
+        #install-prompt {
+            display: none;
+            padding: 10px 20px;
+            background-color: #8e24aa;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        #install-prompt:active {
+            background-color: #6a1b9a;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+
+        <button id="install-prompt">Install App</button>
+
         <h1 class="greeting"></h1>
         <p class="date"></p>
         
@@ -91,12 +109,35 @@
     </div>
 
     <script>
-          if (navigator.serviceWorker) {
-            navigator.serviceWorker.register (
-              '/poemas-mel/sw.js',
-              {scope: '/poemas-mel/'}
-            )
-          }
+        // PWA Install Prompt Handling
+        let deferredPrompt;
+        const installButton = document.getElementById('install-prompt');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installButton.style.display = 'block';
+
+            installButton.addEventListener('click', () => {
+                installButton.style.display = 'none';
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            });
+        });
+        
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register (
+          '/poemas-mel/sw.js',
+          {scope: '/poemas-mel/'}
+        )
+      }
       </script>
     <script>
         // Get the current day of the month
