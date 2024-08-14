@@ -38,7 +38,7 @@
         }
 
         .app-container {
-            display: none; /* Hide content by default */
+            display: block; /* Hide content by default */
             background-color: #ffffff;
             border-radius: 15px;
             padding: 30px;
@@ -48,7 +48,7 @@
         }
         
         .prompt-container {
-            display: block;
+            display: none;
             background-color: #ffffff;
             border-radius: 15px;
             padding: 30px;
@@ -131,16 +131,20 @@
         const promptContent = document.getElementById('prompt-content');
 
         window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('beforeinstallprompt');
             e.preventDefault();
             deferredPrompt = e;
 
+            promptContent.style.display = 'block';
+            appContent.style.display = 'none';
+
             installButton.addEventListener('click', () => {
-                promptContent.style.display = 'none';
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
                         console.log('User accepted the install prompt');
-                        appContent.style.display = 'block';  // Show content after install
+                        promptContent.style.display = 'none';
+                        appContent.style.display = 'block';
                     } else {
                         console.log('User dismissed the install prompt');
                     }
@@ -149,11 +153,6 @@
             });
         });
 
-        window.addEventListener('appinstalled', (event) => {
-            console.log('PWA was installed');
-            promptContent.style.display = 'none';
-            appContent.style.display = 'block';
-        });
 
       if (navigator.serviceWorker) {
         navigator.serviceWorker.register (
