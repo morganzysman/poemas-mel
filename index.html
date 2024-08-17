@@ -20,83 +20,90 @@
         <link rel="manifest" href="/poemas-mel/manifest.webmanifest">
         <style>
             body {
-            font-family: "Helvetica Neue", Arial, sans-serif;
-            background-color: #f3e5f5;
-            color: #333;
-            text-align: center;
-            padding-left: 50px;
-            padding-right: 50px;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+                font-family: "Helvetica Neue", Arial, sans-serif;
+                background-color: #f1f1f1;
+                color: #333;
+                text-align: center;
+                padding-left: 20px;
+                padding-right: 20px;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
             }
             
             .title {
-            font-size: 2.5em;
-            color: #8e24aa;
-            margin-bottom: 10px;
+                font-size: 2.5em;
+                color: #673ab7;
+                margin-bottom: 10px;
             }
+            
             .description {
-            font-size: 1em;
-            color: #555;
-            margin-bottom: 30px;
+                font-size: 1em;
+                color: #666;
+                margin-bottom: 30px;
             }
+            
             .mosaic {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            max-width: 1000px;
-            margin: 20px auto;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 10px;
+                max-width: 1000px;
+                margin: 20px auto;
             }
+            
             .mosaic-item {
-            position: relative;
-            width: 100%;
-            padding-bottom: 100%; /* This maintains a square aspect ratio */
-            cursor: pointer;
-            transition: transform 0.3s ease;
+                position: relative;
+                width: 100%;
+                padding-bottom: 100%; /* Maintain square aspect ratio */
+                cursor: pointer;
+                transition: transform 0.3s ease;
             }
+            
             .mosaic-item img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* This ensures the image covers the square area */
-            border-radius: 10px;
-            border: 4px solid white;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 8px;
+                transition: transform 0.3s ease, opacity 0.3s ease;
             }
+            
             .mosaic-item img.previous-day {
-            opacity: 0.5; /* Slightly darker image for past days */
+                opacity: 0.6;
             }
+            
             .mosaic-item img.current-day {
-            opacity: 1; /* Clear image for the current day */
-            border: 4px solid #8e24aa; /* Highlight the current day */
+                opacity: 1;
+                border: 4px solid #673ab7;
             }
+            
             .mosaic-item img.upcoming-day {
-            filter: blur(5px); /* Blurred image for upcoming days */
-            opacity: 0.5; /* Slightly faded to indicate it's in the future */
-            cursor: not-allowed;
+                filter: grayscale(100%) blur(4px);
+                opacity: 0.3;
+                cursor: not-allowed;
             }
+            
             .mosaic-item span {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translate(-40%, 0); /* Centers the number horizontally */
-            background-color: rgba(255, 255, 255, 0.8); /* Lighter background color */
-            color: #333; /* Darker text color for contrast */
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 1.2em;
-            font-weight: bold;
-            z-index: 1;
-            pointer-events: none;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-            white-space: nowrap; /* Prevents the number from breaking onto a new line */
+                position: absolute;
+                bottom: 10px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: rgba(255, 255, 255, 0.9);
+                color: #333;
+                padding: 4px 8px;
+                border-radius: 5px;
+                font-size: 1.2em;
+                font-weight: bold;
+                pointer-events: none;
             }
+
             /* Modal Styles */
-            .modal {
+          .modal {
             display: none;
             position: fixed;
             z-index: 1;
@@ -128,74 +135,87 @@
             text-decoration: none;
             cursor: pointer;
             }
+            
             .poem-container-modal {
-            font-size: 1.2em;
-            line-height: 1.6em;
-            color: #555;
-            margin-top: 10px;
+                font-size: 1.2em;
+                line-height: 1.6;
+                color: #555;
+                margin-top: 10px;
             }
+            
             .photo-container-modal img {
-            max-width: 100%;
-            border-radius: 10px;
+                max-width: 100%;
+                border-radius: 8px;
             }
+
             .app-container {
                 margin: 20px;
-            display: block;
-            background-color: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-            }
-            .prompt-container {
-                display: none;
-                margin-top:50px;
-                background-color: #ffffff;
-                border-radius: 15px;
-                padding: 30px;
-                box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+                display: block;
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
                 max-width: 600px;
                 width: 100%;
             }
+            
+            .prompt-container {
+                display: none;
+                margin-top: 30px;
+                background-color: #fff;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+                max-width: 600px;
+                width: 100%;
+            }
+            
             .photo-container img {
-            max-width: 100%;
-            max-height: 300px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+                max-width: 100%;
+                max-height: 300px;
+                border-radius: 8px;
+                margin-bottom: 20px;
             }
+
             .poem-container {
-            margin-top: 20px;
-            font-size: 1.2em;
-            line-height: 1.6em;
-            color: #555;
-            padding: 15px;
-            background-color: #f8bbd094;
-            border-radius: 10px;
-            box-shadow: inset 0px 4px 10px rgba(0, 0, 0, 0.05);
+                margin-top: 20px;
+                font-size: 1.2em;
+                line-height: 1.6em;
+                color: #555;
+                padding: 15px;
+                background-color: #e1bee7;
+                border-radius: 8px;
             }
+
             .greeting {
-            font-size: 2em;
-            color: #8e24aa;
-            margin-bottom: 10px;
+                font-size: 2em;
+                color: #673ab7;
+                margin-bottom: 10px;
             }
+
             .date {
-            font-size: 1.2em;
-            color: #7b1fa280;
-            margin-bottom: 20px;
+                font-size: 1.2em;
+                color: #9575cd;
+                margin-bottom: 20px;
             }
+
             #install-prompt {
-            padding: 10px 20px;
-            background-color: #8e24aa;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
+                padding: 12px 24px;
+                background-color: #673ab7;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1em;
+                transition: background-color 0.3s ease;
             }
+
+            #install-prompt:hover {
+                background-color: #5e35b1;
+            }
+
             #install-prompt:active {
-            background-color: #6a1b9a;
+                background-color: #512da8;
             }
         </style>
     </head>
@@ -288,19 +308,15 @@
                 "Comida sin mancha,\nNo vale nada,\nTrucha tiradita,\nTiradita en la cama\n<i>❤️ Cusco - 2023</i>",
                 "Esconde lo que quiera,\nEl atardecer lo revela,\nJuntos la copa siempre esta llena,\nDe lo que uno ama\n<i>❤️ Cozumel - 2022</i>",
                 "Risas al viento,\nTu alegría, mi canto,\nNavegamos juntos\n<i>❤️ Iquitos - 2015</i>",
-                
-
                 "Poner una mascara,\nPara mostrarse vulnerable,\nCuidado Mutuo,\nAmor verdadero\n<i>❤️ Cozumel - 2021</i>",
-                
-
                 "Love is more than words can say,\nIn your heart, I find my way,\nEvery day a new surprise,\nIn your love, a sweet sunrise\n❤️ Puira - 2015</i>",
                 "Empezo el gusto por la aventura,\n Desnudos en la cima,\nMama me voy con Alejandra,\nPrimer viaje, Primer amor\n<i>❤️ Lunahuana - 2014</i>",
                 "En la casa de los enanos,\nA veces me siento como un extrano,\nDonde sea que encuentro tus brazos,\n Ahi me siento al gusto\n<i>❤️ Antigua - 2023</i>",
                 "Nuevo sol en tus ojos,\nLago y nuevo destino,\nAmor en el aire\n<i>❤️ Atitlan - 2023</i>",
                 "Mordida Peppa pig,\nAmor a ojos cerrados,\nCorazón contento\n<i>❤️ Cozumel - 2022</i>",
-                "Locuras en todo,\nSin temor al ridigulo,\nNuestra golosina,\nNuesta energia\n<i>❤️ Fakarava - 2023</i>",
+                "Locuras en todo,\n Nada ridigulo,\nNuestra golosina,\nNuesta energia\n<i>❤️ Fakarava - 2023</i>",
                 "En cuestas subimos,\nA veces caemos,\nPero juntos nos alzamos,\nRiendo al final\n<i>❤️ Peru - 2022</i>",
-                "Uno recordatorio,\nDe cuando la cago\n Solo quiero estar contigo\n<i>❤️ Tahiti - 2023</i>",
+                "Uno recordatorio,\nDe cuando la cago\n Solo quiero estar contigo,\nTe Amo\n<i>❤️ Tahiti - 2023</i>",
                 "I Fakarava,\nAita péa péa,\nE'a na te i'a, te mahana e te here\n<i>❤️ Fakarava - 2022</i>",
                 "El Palacio Blanco,\nLo compartiste conmigo,\nKrishna sabe cuanto me encanto,\nLlevame de nuevo\n<i>❤️ India - 2023</i>",
                 "Susuros del amor,\nSorisas del sabor,\nEn cada atardecer,\nBrilla nuestro ser\n<i>❤️ India - 2023</i>",
@@ -309,19 +325,15 @@
                 "En la ducha,\nTenia a mi doctora,\nMe ayudaste en lo malo,\nAhora es mi turno\n<i>❤️ Peru - 2023</i>",
                 "En tu vestido,\nAtrapas el ramo,\nLa proxima vez que pondre un terno,\nSera para el nuestro\n<i>❤️ Peru - 2023</i>",
                 "En tierra Inka,\nMi sol brilla,\nMi cholita, Mi reina, Mi vida\n<i>❤️ Peru - 2023</i>",
-                
-
-                "With every dawn, love’s light anew,\nIn your heart, skies so blue,\nThrough the day and into night,\nIn your love, I find my light.",
-                "Paredes sin alma,\nSon paredes sin vida,\nDemosles color,\nCon nuestro amor\n<i>❤️ Peru - 2023</i>",
-                
-                "The stars may fade, the night may fall,\nIn your heart, I've found it all,\nEvery touch, every care,\nIn your love, no despair.",
-                "Through the seasons, love remains,\nIn your heart, no chains,\nEvery day, a love divine,\nIn your love, all is fine.",
-                "Love is patient, love is kind,\nIn your heart, peace I find,\nThrough the highs and through the lows,\nIn your love, my heart glows.",
-                "Every journey starts with love,\nIn your heart, peace above,\nThrough the paths, wild and free,\nIn your love, I’m meant to be.",
+                "Walking side by side,\nFootprints hold our tale,\nUntouched sand awaits our steps\n❤️ Tumbes - 2023</i>",
+                "Paredes sin alma,\nParedes sin vida,\nDemosles color,\nCon nuestro amor\n<i>❤️ Peru - 2023</i>",
+                "Casa,\nVista,\nCalma\n<i>❤️ Vichayito - 2022</i>",
+                "Piedra luna,\nTrae en esta casa,\nTu poder de la Familia\n<i>❤️ Lima - 2024</i>",
+                "Asi termina el calendario,\nTe pido,\nMe permitas sacarte el moco,\nDe nuevo\n<i>❤️ Mi corazon - Para siempre</i>",
             ];
             
             // Generate the mosaic
-            for (let i = 1; i <= 31; i++) {
+            for (let i = 1; i <= 30; i++) {
             const item = document.createElement("div");
             item.className = "mosaic-item";
             
@@ -344,7 +356,7 @@
             poemDate.setDate(i); // Set the correct date based on the day number
             modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
             } else {
-                img.classList.add("upcoming-day"); // Blurred image for future days
+                // img.classList.add("upcoming-day"); // Blurred image for future days
             }
             
             //if (i <= day) {
@@ -356,7 +368,7 @@
                 poemDate.setDate(i); // Set the correct date based on the day number
                 modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
             });
-            // }
+            //}
             
             item.appendChild(img);
             const span = document.createElement("span");
@@ -379,6 +391,6 @@
             function formatPoem(poem) {
     return poem.replace(/\n/g, '<br>');
 }
-            
         </script>
+    </body>
 </html>
