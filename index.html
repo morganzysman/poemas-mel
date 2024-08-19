@@ -83,7 +83,7 @@
             }
             
             .mosaic-item img.upcoming-day {
-                filter: grayscale(100%) blur(4px);
+                filter: grayscale(100%) blur(5px);
                 opacity: 0.3;
                 cursor: not-allowed;
             }
@@ -217,13 +217,64 @@
             #install-prompt:active {
                 background-color: #512da8;
             }
+
+            .tabs {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Style for the tab buttons */
+.tabs {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tab-button {
+    padding: 12px 24px;
+    font-size: 1em;
+    color: white;
+    background-color: #673ab7;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 150px; /* Ensures all buttons have at least this width */
+    text-align: center; /* Centers the text in the button */
+}
+
+.tab-button:hover {
+    background-color: #5e35b1;
+    transform: scale(1.05);
+}
+
+.tab-button:active {
+    background-color: #512da8;
+    transform: scale(0.95);
+}
+
+.tab-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(103, 58, 183, 0.5);
+}
+
         </style>
     </head>
     <body>
         <div id="app-content" class="app-container">
             <div class="container">
                 <div class="title">¡A su día, su poema!</div>
-                <div class="description">Cada día un nuevo poema, acompañado de su memoria en imagen</div>
+                <div class="description">Cada día, un nuevo poema efímero te espera, acompañado de recuerdos en imágenes</div>
+            </div>
+            <div class="tabs">
+                <button class="tab-button" onclick="createMosaic(8)">Agosto</button>
+                <button class="tab-button" onclick="createMosaic(9)">Septiembre</button>
             </div>
             <div id="mosaic-container" class="mosaic"></div>
             <div id="modal" class="modal">
@@ -282,6 +333,13 @@
             const date = new Date();
             const day = date.getDate();
             
+
+            // Get current date details
+            const today = new Date();
+            const currentMonth = today.getMonth() + 1; // JavaScript months are 0-based, so we add 1
+
+            
+
             const mosaicContainer = document.getElementById("mosaic-container");
             const modal = document.getElementById("modal");
             const modalClose = document.querySelector(".close");
@@ -302,7 +360,7 @@
             const poems = [
                 "En tierra Maya\nSonrisa mas nada,\nDos valen mas que una,\nDe la plaza a la ceremonia\n<i>❤️ Guatemala - 2024</i>",
                 "Castano o rubio,\nJuntos somos niños,\nLoco pero sabio,\nSiempre a en tus brazos\n<i>❤️ Peru - 2022</i>",
-                "El poder está en manos suaves,\nEl amor en susurros, no en exigencias,\nCada caña, cuenta su historia,\nEn tu corazón, una verdad se revela\n<i>❤️ Peru - 2022</i>",
+                "El poder está en manos suaves,\nEl amor en susurros, no en exigencias,\nCada caña, cuenta su historia,\nEn nuestro corazón, una verdad se revela\n<i>❤️ Peru - 2022</i>",
                 "Bajo el palmar,\nSabores compartidos,\nEl mar, nuestro hogar\n<i>❤️ Moorea - 2023</i>",
                 "Melanie dejo su calzon en la cocina,\nEl gato se lo comio pensando que era cecina,\nCorazones Cajamarca,\nRegalanos otro bano del Inka\n<i>❤️ Cajamarca - 2023</i>",
                 "Comida sin mancha,\nNo vale nada,\nTrucha tiradita,\nTiradita en la cama\n<i>❤️ Cusco - 2023</i>",
@@ -314,7 +372,7 @@
                 "En la casa de los enanos,\nA veces me siento como un extrano,\nDonde sea que encuentro tus brazos,\n Ahi me siento al gusto\n<i>❤️ Antigua - 2023</i>",
                 "Nuevo sol en tus ojos,\nLago y nuevo destino,\nAmor en el aire\n<i>❤️ Atitlan - 2023</i>",
                 "Mordida Peppa pig,\nAmor a ojos cerrados,\nCorazón contento\n<i>❤️ Cozumel - 2022</i>",
-                "Locuras en todo,\n Nada ridigulo,\nNuestra golosina,\nNuesta energia\n<i>❤️ Fakarava - 2023</i>",
+                "Locuras en todo,\n Nada riculo,\nNuestra golosina,\nNuesta energia\n<i>❤️ Fakarava - 2023</i>",
                 "En cuestas subimos,\nA veces caemos,\nPero juntos nos alzamos,\nRiendo al final\n<i>❤️ Peru - 2022</i>",
                 "Uno recordatorio,\nDe cuando la cago\n Solo quiero estar contigo,\nTe Amo\n<i>❤️ Tahiti - 2023</i>",
                 "I Fakarava,\nAita péa péa,\nE'a na te i'a, te mahana e te here\n<i>❤️ Fakarava - 2022</i>",
@@ -323,7 +381,7 @@
                 "Los que mas amo,\n En una sola foto\n<i>❤️ Tumbes - 2022</i>",
                 "Familia tuya,\nFamilia mía,\nFamilia nuesta\n<i>❤️ Lima - 2023</i>",
                 "En la ducha,\nTenia a mi doctora,\nMe ayudaste en lo malo,\nAhora es mi turno\n<i>❤️ Peru - 2023</i>",
-                "En tu vestido,\nAtrapas el ramo,\nLa proxima vez que pondre un terno,\nSera para el nuestro\n<i>❤️ Peru - 2023</i>",
+                "En tu vestido,\nAtrapas el ramo,\nYo pongo mi terno,\nVen baila conmigo\n<i>❤️ Peru - 2023</i>",
                 "En tierra Inka,\nMi sol brilla,\nMi cholita, Mi reina, Mi vida\n<i>❤️ Peru - 2023</i>",
                 "Walking side by side,\nFootprints hold our tale,\nUntouched sand awaits our steps\n❤️ Tumbes - 2023</i>",
                 "Paredes sin alma,\nParedes sin vida,\nDemosles color,\nCon nuestro amor\n<i>❤️ Peru - 2023</i>",
@@ -332,65 +390,85 @@
                 "Asi termina el calendario,\nTe pido,\nMe permitas sacarte de nuevo,\nEl moco\n<i>❤️ Mi corazon - Para siempre</i>",
             ];
             
-            // Generate the mosaic
-            for (let i = 1; i <= 30; i++) {
-            const item = document.createElement("div");
-            item.className = "mosaic-item";
-            
-            const img = document.createElement("img");
-            img.src = `https://morganzysman.github.io/poemas-mel/photos/${i}.JPG`;
-            img.alt = `Day ${i}`;
-            img.dataset.day = i;
-            
-            if (i < day) {
-            img.classList.add("previous-day"); // Slightly darkened image for past days
-            } else if (i === day) {
-            img.classList.add("current-day"); // Clear image for the current day
-            // Automatically open the modal for the current day
-            modal.style.display = "block";
-            modalPhoto.src = img.src;
-            modalPoem.innerHTML = formatPoem(poems[i - 1]);
-            modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
+            function createMosaic(month) {
+                mosaicContainer.innerHTML = "";  // This will delete all the content inside the container
+                
+                const totalDays = daysInMonth(month, 2024);
 
-            const poemDate = new Date();
-            poemDate.setDate(i); // Set the correct date based on the day number
-            modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
-            } else {
-                // img.classList.add("upcoming-day"); // Blurred image for future days
+                for (let i = 1; i <= totalDays; i++) {
+                    const item = document.createElement("div");
+                    item.className = "mosaic-item";
+            
+                    const img = document.createElement("img");
+                    img.src = `https://morganzysman.github.io/poemas-mel/photos/0${month}/${i}.JPG`
+                    img.alt = `Day ${i}`;
+                    img.dataset.day = i;
+            
+                    if(month > currentMonth) {
+                        img.classList.add("upcoming-day"); // Blurred image for future days
+                    } else {
+                        if (i <= day) {
+                        img.classList.add("previous-day"); // Slightly darkened image for past days
+                        } else if (i === day) {
+                            img.classList.add("current-day"); // Clear image for the current day
+                        } else {
+                            img.classList.add("upcoming-day"); // Blurred image for future days
+                        }
+                    }
+                    
+                    if (i <= day) {
+                        img.addEventListener("click", function () {
+                            modal.style.display = "block";
+                            modalPhoto.src = this.src;
+                            modalPoem.innerHTML = formatPoem(poems[i - 1]);
+                            modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
+                            const poemDate = new Date();
+                            poemDate.setDate(i); // Set the correct date based on the day number
+                            modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
+                        });
+                    }
+            
+                    item.appendChild(img);
+                    
+                    // Day Number over image
+                    const span = document.createElement("span");
+                    span.textContent = i;
+                    item.appendChild(span);
+                    mosaicContainer.appendChild(item);
+            
+                    
+                }
             }
-            
-            //if (i <= day) {
-            img.addEventListener("click", function () {
-                modal.style.display = "block";
-                modalPhoto.src = this.src;
-                modalPoem.innerHTML = formatPoem(poems[i - 1]);
-                const poemDate = new Date();
-                poemDate.setDate(i); // Set the correct date based on the day number
-                modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
-            });
-            //}
-            
-            item.appendChild(img);
-            const span = document.createElement("span");
-            span.textContent = i;
-            item.appendChild(span);
-            mosaicContainer.appendChild(item);
-            }
-            
-            // Handle modal close
-            modalClose.onclick = function () {
-                modal.style.display = "none";
-            };
             
             window.onclick = function (event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
             };
+
+            // Close the modal when the close button is clicked
+            modalClose.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
             
             function formatPoem(poem) {
-    return poem.replace(/\n/g, '<br>');
-}
+                return poem.replace(/\n/g, '<br>');
+            }
+
+            function daysInMonth(month, year) {
+                return new Date(year, month, 0).getDate();
+            }
+
+            window.onload = createMosaic(currentMonth);
+        </script>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDY77DSY27"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-LDY77DSY27');
         </script>
     </body>
 </html>
