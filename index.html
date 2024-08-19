@@ -407,7 +407,7 @@
                     if(month > currentMonth) {
                         img.classList.add("upcoming-day"); // Blurred image for future days
                     } else {
-                        if (i <= day) {
+                        if (i < day) {
                         img.classList.add("previous-day"); // Slightly darkened image for past days
                         } else if (i === day) {
                             img.classList.add("current-day"); // Clear image for the current day
