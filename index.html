@@ -410,13 +410,14 @@
                     } else {
                         if (i < day) {
                         img.classList.add("previous-day"); // Slightly darkened image for past days
-                        } else if (i >= day) {
+                        } else if (i === day) {
                             img.classList.add("current-day"); // Clear image for the current day
                         } else {
-                            //img.classList.add("upcoming-day"); // Blurred image for future days
+                            img.classList.add("upcoming-day"); // Blurred image for future days
                         }
                     }
                     
+                    if (i <= day) {
                         img.addEventListener("click", function () {
                             modal.style.display = "block";
                             modalPhoto.src = this.src;
@@ -426,7 +427,7 @@
                             poemDate.setDate(i); // Set the correct date based on the day number
                             modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
                         });
-                    
+                    }
             
                     item.appendChild(img);
                     
