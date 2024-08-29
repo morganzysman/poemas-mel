@@ -270,7 +270,7 @@
         <div id="app-content" class="app-container">
             <div class="container">
                 <div class="title">¡A su día, su poema!</div>
-                <div class="description">Los requerdos estan para hacer brillar el pasado<br>El futuro falta escribirlo</div>
+                <div class="description">Los recuerdos estan para hacer brillar el pasado<br>El futuro falta escribirlo</div>
             </div>
             <div class="tabs">
                 <button class="tab-button" onclick="createMosaic(8)">Agosto</button>
@@ -338,8 +338,6 @@
             const today = new Date();
             const currentMonth = today.getMonth() + 1; // JavaScript months are 0-based, so we add 1
 
-            
-
             const mosaicContainer = document.getElementById("mosaic-container");
             const modal = document.getElementById("modal");
             const modalClose = document.querySelector(".close");
@@ -356,45 +354,54 @@
             const selectedHighs = highs[Math.floor(Math.random() * highs.length)];
             const selectedGreeting = greetings[Math.floor(Math.random() * greetings.length)];
             
-            // Array of 31 poems (one for each day of the month)
-            const poems = [
-                "En tierra Maya\nSonrisa mas nada,\nDos valen mas que una,\nDe la plaza a la ceremonia\n<i>❤️ Guatemala - 2024</i>",
-                "Castano o rubio,\nJuntos somos niños,\nLoco pero sabio,\nSiempre a en tus brazos\n<i>❤️ Peru - 2022</i>",
-                "El poder está en manos suaves,\nEl amor en susurros, no en exigencias,\nCada caña, cuenta su historia,\nEn nuestro corazón, una verdad se revela\n<i>❤️ Peru - 2022</i>",
-                "Bajo el palmar,\nSabores compartidos,\nEl mar, nuestro hogar\n<i>❤️ Moorea - 2023</i>",
-                "Melanie dejo su calzon en la cocina,\nEl gato se lo comio pensando que era cecina,\nCorazones Cajamarca,\nRegalanos otro bano del Inka\n<i>❤️ Cajamarca - 2023</i>",
-                "Comida sin mancha,\nNo vale nada,\nTrucha tiradita,\nTiradita en la cama\n<i>❤️ Cusco - 2023</i>",
-                "Esconde lo que quiera,\nEl atardecer lo revela,\nJuntos la copa siempre esta llena,\nDe lo que uno ama\n<i>❤️ Cozumel - 2022</i>",
-                "Risas al viento,\nTu alegría, mi canto,\nNavegamos juntos\n<i>❤️ Iquitos - 2015</i>",
-                "Poner una mascara,\nPara mostrarse vulnerable,\nCuidado Mutuo,\nAmor verdadero\n<i>❤️ Cozumel - 2021</i>",
-                "Love is more than words can say,\nIn your heart, I find my way,\nEvery day a new surprise,\nIn your love, a sweet sunrise\n❤️ Puira - 2015</i>",
-                "Empezo el gusto por la aventura,\n Desnudos en la cima,\nMama me voy con Alejandra,\nPrimer viaje, Primer amor\n<i>❤️ Lunahuana - 2014</i>",
-                "En la casa de los enanos,\nA veces me siento como un extrano,\nDonde sea que encuentro tus brazos,\n Ahi me siento al gusto\n<i>❤️ Antigua - 2023</i>",
-                "Nuevo sol en tus ojos,\nLago y nuevo destino,\nAmor en el aire\n<i>❤️ Atitlan - 2023</i>",
-                "Mordida Peppa pig,\nAmor a ojos cerrados,\nCorazón contento\n<i>❤️ Cozumel - 2022</i>",
-                "Locuras en todo,\n Nada riculo,\nNuestra golosina,\nNuesta energia\n<i>❤️ Fakarava - 2023</i>",
-                "En cuestas subimos,\nA veces caemos,\nPero juntos nos alzamos,\nRiendo al final\n<i>❤️ Peru - 2022</i>",
-                "Uno recordatorio,\nDe cuando la cago\n Solo quiero estar contigo,\nTe Amo\n<i>❤️ Tahiti - 2023</i>",
-                "I Fakarava,\nAita péa péa,\nE'a na te i'a, te mahana e te here\n<i>❤️ Fakarava - 2022</i>",
-                "El Palacio Blanco,\nLo compartiste conmigo,\nKrishna sabe cuanto me encanto,\nLlevame de nuevo\n<i>❤️ India - 2023</i>",
-                "Susuros del amor,\nSorisas del sabor,\nEn cada atardecer,\nBrilla nuestro ser\n<i>❤️ India - 2023</i>",
-                "Los que mas amo,\n En una sola foto\n<i>❤️ Tumbes - 2022</i>",
-                "Familia tuya,\nFamilia mía,\nFamilia nuesta\n<i>❤️ Lima - 2023</i>",
-                "En la ducha,\nTenia a mi doctora,\nMe ayudaste en lo malo,\nAhora es mi turno\n<i>❤️ Peru - 2023</i>",
-                "En tu vestido,\nAtrapas el ramo,\nYo pongo mi terno,\nVen baila conmigo\n<i>❤️ Peru - 2023</i>",
-                "En tierra Inka,\nMi sol brilla,\nMi cholita, Mi reina, Mi vida\n<i>❤️ Peru - 2023</i>",
-                "Walking side by side,\nFootprints hold our tale,\nUntouched sand awaits our steps\n❤️ Tumbes - 2023</i>",
-                "Paredes sin alma,\nParedes sin vida,\nDemosles color,\nCon nuestro amor\n<i>❤️ Peru - 2023</i>",
-                "Casa,\nVista,\nCalma\n<i>❤️ Vichayito - 2022</i>",
-                "Piedra luna,\nTrae en nuestra casa,\nTu poder de la Familia\n<i>❤️ Lima - 2024</i>",
-                "El pasado al pasado,\nConfiemos en el abuelo,\nHuachumita,\nSana\n<i>❤️ Urubamba - 2022</i>",
-                "Asi termina Agosto,\nTe pido,\nMe permitas sacarte de nuevo,\nEl moco\n<i>❤️ Mi corazon - Para siempre</i>",
-            ];
+            const poemsByMonth = {
+                8: [
+                        "En tierra Maya\nSonrisa mas nada,\nDos valen mas que una,\nDe la plaza a la ceremonia\n<i>❤️ Guatemala - 2024</i>",
+                        "Castano o rubio,\nJuntos somos niños,\nLoco pero sabio,\nSiempre a en tus brazos\n<i>❤️ Peru - 2022</i>",
+                        "El poder está en manos suaves,\nEl amor en susurros, no en exigencias,\nCada caña, cuenta su historia,\nEn nuestro corazón, una verdad se revela\n<i>❤️ Peru - 2022</i>",
+                        "Bajo el palmar,\nSabores compartidos,\nEl mar, nuestro hogar\n<i>❤️ Moorea - 2023</i>",
+                        "Melanie dejo su calzon en la cocina,\nEl gato se lo comio pensando que era cecina,\nCorazones Cajamarca,\nRegalanos otro bano del Inka\n<i>❤️ Cajamarca - 2023</i>",
+                        "Comida sin mancha,\nNo vale nada,\nTrucha tiradita,\nTiradita en la cama\n<i>❤️ Cusco - 2023</i>",
+                        "Esconde lo que quiera,\nEl atardecer lo revela,\nJuntos la copa siempre esta llena,\nDe lo que uno ama\n<i>❤️ Cozumel - 2022</i>",
+                        "Risas al viento,\nTu alegría, mi canto,\nNavegamos juntos\n<i>❤️ Iquitos - 2015</i>",
+                        "Poner una mascara,\nPara mostrarse vulnerable,\nCuidado Mutuo,\nAmor verdadero\n<i>❤️ Cozumel - 2021</i>",
+                        "Love is more than words can say,\nIn your heart, I find my way,\nEvery day a new surprise,\nIn your love, a sweet sunrise\n❤️ Puira - 2015</i>",
+                        "Empezo el gusto por la aventura,\n Desnudos en la cima,\nMama me voy con Alejandra,\nPrimer viaje, Primer amor\n<i>❤️ Lunahuana - 2014</i>",
+                        "En la casa de los enanos,\nA veces me siento como un extrano,\nDonde sea que encuentro tus brazos,\n Ahi me siento al gusto\n<i>❤️ Antigua - 2023</i>",
+                        "Nuevo sol en tus ojos,\nLago y nuevo destino,\nAmor en el aire\n<i>❤️ Atitlan - 2023</i>",
+                        "Mordida Peppa pig,\nAmor a ojos cerrados,\nCorazón contento\n<i>❤️ Cozumel - 2022</i>",
+                        "Locuras en todo,\n Nada riculo,\nNuestra golosina,\nNuesta energia\n<i>❤️ Fakarava - 2023</i>",
+                        "En cuestas subimos,\nA veces caemos,\nPero juntos nos alzamos,\nRiendo al final\n<i>❤️ Peru - 2022</i>",
+                        "Uno recordatorio,\nDe cuando la cago\n Solo quiero estar contigo,\nTe Amo\n<i>❤️ Tahiti - 2023</i>",
+                        "I Fakarava,\nAita péa péa,\nE'a na te i'a, te mahana e te here\n<i>❤️ Fakarava - 2022</i>",
+                        "El Palacio Blanco,\nLo compartiste conmigo,\nKrishna sabe cuanto me encanto,\nLlevame de nuevo\n<i>❤️ India - 2023</i>",
+                        "Susuros del amor,\nSorisas del sabor,\nEn cada atardecer,\nBrilla nuestro ser\n<i>❤️ India - 2023</i>",
+                        "Los que mas amo,\n En una sola foto\n<i>❤️ Tumbes - 2022</i>",
+                        "Familia tuya,\nFamilia mía,\nFamilia nuesta\n<i>❤️ Lima - 2023</i>",
+                        "En la ducha,\nTenia a mi doctora,\nMe ayudaste en lo malo,\nAhora es mi turno\n<i>❤️ Peru - 2023</i>",
+                        "En tu vestido,\nAtrapas el ramo,\nYo pongo mi terno,\nVen baila conmigo\n<i>❤️ Peru - 2023</i>",
+                        "En tierra Inka,\nMi sol brilla,\nMi cholita, Mi reina, Mi vida\n<i>❤️ Peru - 2023</i>",
+                        "Walking side by side,\nFootprints hold our tale,\nUntouched sand awaits our steps\n❤️ Tumbes - 2023</i>",
+                        "Paredes sin alma,\nParedes sin vida,\nDemosles color,\nCon nuestro amor\n<i>❤️ Peru - 2023</i>",
+                        "Casa,\nVista,\nCalma\n<i>❤️ Vichayito - 2022</i>",
+                        "Piedra luna,\nTrae en nuestra casa,\nTu poder de la Familia\n<i>❤️ Lima - 2024</i>",
+                        "El pasado al pasado,\nConfiemos en el abuelo,\nHuachumita,\nSana\n<i>❤️ Urubamba - 2022</i>",
+                        "Asi termina Agosto,\nTe pido,\nMe permitas sacarte de nuevo,\nEl moco\n<i>❤️ Mi corazon - Para siempre</i>",
+                    ],
+                9: [
+                        "Cae el agua,\nSuave, luego tormentosa,\nHoy turbia, pero mañana clara,\nAsí es el querer\n❤️ Matucana - 2023</i>",
+                        "Hoy renuncio,\nPara cosechar, para cocina,\nQue mis manos den vida a color y sabor,\n❤️ Antigua - 2024</i>",
+                        
+                        "Maleta rosada, maleta viajera,\nGuianos a nuestro hogar,\nDonde juntos podamos sanar\n❤️ Guatemala - 2023</i>",
+                        "Somos lo que somos,\nPor lo que juntos vivimos,\nPriorizate, dejame companarte,\nNunca te retrasare\n❤️ Guatemala - 2023</i>",
+                    ]
+            };
             
             function createMosaic(month) {
                 mosaicContainer.innerHTML = "";  // This will delete all the content inside the container
                 
                 const totalDays = daysInMonth(month, 2024);
+                const poems = poemsByMonth[month];  // Get the correct array of poems for the selected month
 
                 for (let i = 1; i <= totalDays; i++) {
                     const item = document.createElement("div");
@@ -417,7 +424,7 @@
                         }
                     }
                     
-                    if (i <= day) {
+                    // if (i <= day) {
                         img.addEventListener("click", function () {
                             modal.style.display = "block";
                             modalPhoto.src = this.src;
@@ -427,7 +434,7 @@
                             poemDate.setDate(i); // Set the correct date based on the day number
                             modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
                         });
-                    }
+                    // }
             
                     item.appendChild(img);
                     
@@ -436,8 +443,6 @@
                     span.textContent = i;
                     item.appendChild(span);
                     mosaicContainer.appendChild(item);
-            
-                    
                 }
             }
             
