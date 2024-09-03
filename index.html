@@ -395,6 +395,8 @@
                         "Somos lo que somos,\nPor lo que juntos vivimos,\nPriorizate, dejame companarte,\nNunca te retrasare\n❤️ Guatemala - 2023</i>",
                         "Somos amigos,\nTus amigos los mios,\nMis amigos los tuyos,\nSiempre ilucionado para compartir contigo\n❤️ Tahiti - 2023</i>",
                         "Agua sagrada,\nMontana silenciosa,\nLas pulseras bendecidas,\nLlevan tu energia sanadora\n❤️ Pisac - 2024</i>",
+                        "Ace en mano,\nJugar el siguente mango,\nO juntos trabajar en lo construido,\nTodavia estamos a tiempo\n❤️ Puira - 2015</i>",
+                        "Preciosa mujer Peruviana,\nVestida de joia de mi tierra,\nResalta con tu piel caramel,\nCon la gracia que el sol te entrega,\n Eres esencia y ternura,\n❤️ Lima - 2017</i>"
                     ]
             };
             
@@ -425,7 +427,7 @@
                         }
                     }
                     
-                    if (i <= day) {
+                    // if (i <= day) {
                         img.addEventListener("click", function () {
                             modal.style.display = "block";
                             modalPhoto.src = this.src;
@@ -434,12 +436,13 @@
                             const poemDate = new Date();
                             poemDate.setDate(i); // Set the correct date based on the day number
                             modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
-                             gtag('event', 'modal_open', {
+                            
+                            gtag('event', 'modal_open', {
                                 'event_category': this.src,
                                 'event_label': formatPoem(poems[i - 1])
                             });
                         });
-                    }
+                    // }
             
                     item.appendChild(img);
                     
