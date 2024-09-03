@@ -434,6 +434,10 @@
                             const poemDate = new Date();
                             poemDate.setDate(i); // Set the correct date based on the day number
                             modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
+                             gtag('event', 'modal_open', {
+                                'event_category': this.src,
+                                'event_label': formatPoem(poems[i - 1])
+                            });
                         });
                     }
             
