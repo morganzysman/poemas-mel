@@ -277,7 +277,7 @@
                 <button class="tab-button" onclick="createMosaic(9)">Septiembre</button>
             </div>
             <div id="mosaic-container" class="mosaic"></div>
-            <div>v1.0.5</div>
+            <div>v1.0.6</div>
             <div id="modal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
@@ -393,11 +393,12 @@
                         "Cae el agua,\nSuave, luego tormentosa,\nHoy turbia, pero mañana clara,\nAsí es el querer\n❤️ Matucana - 2023</i>",
                         "Hoy renuncio,\nPara cosechar, para cocina,\nQue mis manos den vida a color y sabor,\nQue solo nos quede disfrutar\n❤️ Antigua - 2024</i>",
                         "Maleta rosada, maleta viajera,\nGuianos a nuestro hogar,\nDe nos un manaña,\nDonde juntos podamos sanar\n❤️ Guatemala - 2023</i>",
+                        "Me fui y te dejé lo más precioso que tenía,\nPorque sabía que eras el amor de mi vida,\nDejé mis miedos atrás, para compartir mi ser contigo,\nQue el pasado sea nuestro respaldo en este camino rocoso\nHagamos el intento, cumplamos nuestro sueño,\nDéjame mostrarte cuánto te amo\n❤️ Lima - 2015</i>",
                         "Somos lo que somos,\nPor lo que juntos vivimos,\nPriorizate, dejame companarte,\nNunca te retrasare\n❤️ Guatemala - 2023</i>",
-                        "Somos amigos,\nTus amigos los mios,\nMis amigos los tuyos,\nSiempre ilucionado para compartir contigo\n❤️ Tahiti - 2023</i>",
-                        "Agua sagrada,\nMontana silenciosa,\nLas pulseras bendecidas,\nLlevan tu energia sanadora\n❤️ Pisac - 2024</i>",
+                        "Agua sagrada,\nMontana silenciosa,\nPulseras bendecida,\nDos valen mas que una\n❤️ Pisac - 2024</i>",
                         "Ace en mano,\nJugar el siguente mango,\nO juntos trabajar en lo construido,\nTodavia estamos a tiempo\n❤️ Puira - 2015</i>",
-                        "Preciosa mujer Peruviana,\nVestida de joia de mi tierra,\nResalta con tu piel caramel,\nCon la gracia que el sol te entrega,\n Eres esencia y ternura,\n❤️ Lima - 2017</i>"
+                        "Preciosa mujer Peruviana,\nVestida de joia de mi tierra,\nResalta con tu piel caramel,\nCon la gracia que el sol te entrega,\n Eres esencia y ternura,\n❤️ Lima - 2017</i>",
+                        "Alago del pasado,\nHoy sigue siendo como me siento,\nCicatrices que marcan, pero no definen,\nEl manana se escribe cada día\n❤️ Lima - 2015</i>",
                     ]
             };
             
@@ -438,7 +439,7 @@
                             poemDate.setDate(i); // Set the correct date based on the day number
                             modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
                             
-                            gtag('event', 'modal_open', {
+                            gtag('event', 'v1.0.6', {
                                 'event_category': this.src,
                                 'event_label': formatPoem(poems[i - 1])
                             });
