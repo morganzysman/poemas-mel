@@ -474,20 +474,20 @@
                             });
                         } else {
                             img.classList.add("upcoming-day"); // Blurred image for future days
-                            img.addEventListener("click", function () {
-                                modal.style.display = "block";
-                                modalPhoto.src = this.src;
-                                modalPoem.innerHTML = formatPoem(poems[i - 1]);
-                                modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
-                                const poemDate = new Date();
-                                poemDate.setDate(i); // Set the correct date based on the day number
-                                modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
+                            // img.addEventListener("click", function () {
+                            //     modal.style.display = "block";
+                            //     modalPhoto.src = this.src;
+                            //     modalPoem.innerHTML = formatPoem(poems[i - 1]);
+                            //     modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
+                            //     const poemDate = new Date();
+                            //     poemDate.setDate(i); // Set the correct date based on the day number
+                            //     modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
                                 
-                                gtag('event', 'v1.0.7', {
-                                    'event_category': this.src,
-                                    'event_label': formatPoem(poems[i - 1])
-                                });
-                            });
+                            //     gtag('event', 'v1.0.7', {
+                            //         'event_category': this.src,
+                            //         'event_label': formatPoem(poems[i - 1])
+                            //     });
+                            // });
                         }
                     }
 
