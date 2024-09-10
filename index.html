@@ -277,7 +277,7 @@
                 <button class="tab-button" onclick="createMosaic(9)">Septiembre</button>
             </div>
             <div id="mosaic-container" class="mosaic"></div>
-            <div>v1.0.6</div>
+            <div>v1.0.7</div>
             <div id="modal" class="modal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
@@ -399,7 +399,10 @@
                         "Ace en mano,\nJugar el siguente mango,\nO juntos trabajar en lo construido,\nTodavia estamos a tiempo\n❤️ Puira - 2015</i>",
                         "Preciosa mujer Peruviana,\nVestida de joia de mi tierra,\nResalta con tu piel caramel,\nCon la gracia que el sol te entrega,\n Eres esencia y ternura,\n❤️ Lima - 2017</i>",
                         "Alago del pasado,\nHoy sigue siendo como me siento,\nCicatrices que marcan, pero no definen,\nEl manana se escribe cada día\n❤️ Lima - 2015</i>",
+                        "Esta foto capturo el dia de mi retorno,\nComo este verano al destino me atrevo,\nEstoy listo para caminar a tu lado,\nDía a día, paso a paso,\nEl amor como guía,\nEl compromiso como ancla ⛵\n❤️ Lima - Verano 2015</i>",
+                        "Tu Luna cae en mi Sol,\nEn este encuentro de cielo y fuego,\nEl Sol me tatúa con la huella de tu ser,\nCon tan solo querer, se propone el renacer\n❤️ Lima - Verano 2015</i>",
                     ]
+
             };
             
             function createMosaic(month) {
@@ -417,19 +420,11 @@
                     img.alt = `Day ${i}`;
                     img.dataset.day = i;
             
-                    if(month > currentMonth) {
-                        img.classList.add("upcoming-day"); // Blurred image for future days
-                    } else {
-                        if (i < day) {
-                        img.classList.add("previous-day"); // Slightly darkened image for past days
-                        } else if (i === day) {
-                            img.classList.add("current-day"); // Clear image for the current day
-                        } else {
-                            img.classList.add("upcoming-day"); // Blurred image for future days
-                        }
-                    }
                     
-                    if (i <= day) {
+                    if(month > currentMonth) {
+                        img.classList.add("upcoming-day"); // Blurred image for future days   
+                    } else if(month < currentMonth) {
+                        img.classList.add("previous-day"); // Slightly darkened image for past days
                         img.addEventListener("click", function () {
                             modal.style.display = "block";
                             modalPhoto.src = this.src;
@@ -439,13 +434,63 @@
                             poemDate.setDate(i); // Set the correct date based on the day number
                             modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
                             
-                            gtag('event', 'v1.0.6', {
+                            gtag('event', 'v1.0.7', {
                                 'event_category': this.src,
                                 'event_label': formatPoem(poems[i - 1])
                             });
                         });
+                    } else if (month == currentMonth) {
+                        if (i < day) {
+                            img.classList.add("previous-day"); // Slightly darkened image for past days
+                            img.addEventListener("click", function () {
+                                modal.style.display = "block";
+                                modalPhoto.src = this.src;
+                                modalPoem.innerHTML = formatPoem(poems[i - 1]);
+                                modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
+                                const poemDate = new Date();
+                                poemDate.setDate(i); // Set the correct date based on the day number
+                                modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
+                                
+                                gtag('event', 'v1.0.7', {
+                                    'event_category': this.src,
+                                    'event_label': formatPoem(poems[i - 1])
+                                });
+                            });
+                        } else if (i === day) {
+                            img.classList.add("current-day");
+                            img.addEventListener("click", function () {
+                                modal.style.display = "block";
+                                modalPhoto.src = this.src;
+                                modalPoem.innerHTML = formatPoem(poems[i - 1]);
+                                modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
+                                const poemDate = new Date();
+                                poemDate.setDate(i); // Set the correct date based on the day number
+                                modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
+                                
+                                gtag('event', 'v1.0.7', {
+                                    'event_category': this.src,
+                                    'event_label': formatPoem(poems[i - 1])
+                                });
+                            });
+                        } else {
+                            img.classList.add("upcoming-day"); // Blurred image for future days
+                            img.addEventListener("click", function () {
+                                modal.style.display = "block";
+                                modalPhoto.src = this.src;
+                                modalPoem.innerHTML = formatPoem(poems[i - 1]);
+                                modalGreeting.textContent = `${selectedHighs}, ${selectedGreeting}!`;
+                                const poemDate = new Date();
+                                poemDate.setDate(i); // Set the correct date based on the day number
+                                modalDate.textContent = `Poema del día - ${poemDate.toLocaleDateString('es-ES')}`;
+                                
+                                gtag('event', 'v1.0.7', {
+                                    'event_category': this.src,
+                                    'event_label': formatPoem(poems[i - 1])
+                                });
+                            });
+                        }
                     }
-            
+
                     item.appendChild(img);
                     
                     // Day Number over image
